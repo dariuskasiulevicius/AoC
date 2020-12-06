@@ -1,0 +1,20 @@
+{
+    "name": "dkasiulevicius/adventofcode",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "AdventOfCode\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.4",
+        "symfony/console": "^5.2",
+        "symfony/finder": "^5.2"
+    },
+    "authors": [
+        {
+            "name": "Darius Kasiulevičius",
+            "email": "1218606+dariuskasiulevicius@users.noreply.github.com"
+        }
+    ]
+}
