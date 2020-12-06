@@ -18,7 +18,7 @@ class MakeSkeletonForDayCommand extends Command
     {
         $this
             ->setDescription('Command that creates boilerplate code for selected day')
-            ->addArgument('day', InputArgument::REQUIRED, 'Day number. Examples: <5>, <12>, <27>.')
+            ->addArgument('day', InputArgument::REQUIRED, 'Day number. Examples: <5>, <27>.')
             ->addOption(
                 'force',
                 null,
