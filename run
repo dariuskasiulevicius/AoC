@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Finder\Finder;
+
+$application = new Application();
+$finder = new Finder();
+$finder->files()->name('*Command.php')->in(__DIR__.'/src');
+
+if ($finder->hasResults()) {
+    foreach ($finder as $file) {
+        $commandClassName = 'AdventOfCode\\' . str_replace(['.php', '/'], ['', '\\'], $file->getRelativePathname());
+        $application->add(new $commandClassName);
+    }
+}
+
+$application->run();
