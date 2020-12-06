@@ -56,4 +56,12 @@ class DataInput implements \Iterator
         $this->fileHandler = fopen($this->file, 'rb');
         $this->lineNumber = 1;
     }
+
+    public function getAllLines():array
+    {
+        $fileContent = file_get_contents($this->file);
+        $lines = explode(PHP_EOL, $fileContent);
+
+        return $lines;
+    }
 }
