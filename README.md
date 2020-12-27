@@ -1,4 +1,7 @@
 # Advent of code 2020 solutions in PHP
+1. Initail actions:
+    * Install dependencies:
+        + **composer install**
 
 1. Command: **AoC-2020:make**
     * Description:
