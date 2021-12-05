@@ -1,9 +1,13 @@
-# Advent of code 2020 solutions in PHP
+# Advent of code 2020, 2021 solutions in PHP
 1. Initail actions:
     * Install dependencies:
         + **composer install**
 
-1. Command: **AoC-2020:make**
+2. Command: **AoC-2021:make**
+   * Same as on 2020
+3. Command: **AoC-2021:day**
+   * Same as on 2020
+4. Command: **AoC-2020:make**
     * Description:
         + Command that creates boilerplate code for selected day
     * Usage:
@@ -16,7 +20,7 @@
         + ./run AoC-2020:make 5
         + ./run AoC-2020:make --force 5
 
-1. Command: **AoC-2020:day**
+5. Command: **AoC-2020:day**
 
     * Description:
         + Command that runs code for selected day
@@ -30,4 +34,5 @@
     * Examples:
         + ./run AoC-2020:day 5
         + ./run AoC-2020:day -v 5 
+        + ./run AoC-2020:day -v -d Demo.txt 5 
 
