@@ -41,19 +41,29 @@ class PuzzleCommand extends Command
 
 
         $table = new Table($output);
+        $startTime = microtime(true);
+        $silver = $this->silverObj->resolve($dataInput);
+        $silverTime = microtime(true) - $startTime;
+        $output->writeln('Silver time: ' . $silverTime, OutputInterface::VERBOSITY_VERBOSE);
+
+        $startTime = microtime(true);
+        $gold = $this->goldObj->resolve($dataInput);
+        $goldTime = microtime(true) - $startTime;
+        $output->writeln('Gold time: ' . $goldTime, OutputInterface::VERBOSITY_VERBOSE);
+
         $table
-            ->setHeaders(['Star type', 'Result value'])
+            ->setHeaders(['Star type', 'Result value', 'Execution time'])
             ->setHeaderTitle('Day ' . $day)
             ->setRows(
                 [
-                    ['Silver', $this->silverObj->resolve($dataInput)],
-                    ['Gold', $this->goldObj->resolve($dataInput)],
+                    ['Silver', $silver, $silverTime],
+                    ['Gold', $gold, $goldTime],
                 ]
             )
             ->setStyle('box-double')
             ->render();
 
-        if (OutputInterface::VERBOSITY_VERBOSE === $output->getVerbosity()) {
+        if (OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity()) {
             $table = new Table($output);
             $table
                 ->setHeaders(['Information description', 'Value'])
