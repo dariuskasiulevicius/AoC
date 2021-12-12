@@ -52,7 +52,7 @@ class PuzzleCommand extends Command
         $output->writeln('Gold time: ' . $goldTime, OutputInterface::VERBOSITY_VERBOSE);
 
         $table
-            ->setHeaders(['Star type', 'Result value', 'Execution time'])
+            ->setHeaders(['Star type', 'Result value', 'Execution time (s)'])
             ->setHeaderTitle('Day ' . $day)
             ->setRows(
                 [
