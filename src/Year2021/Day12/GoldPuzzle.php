@@ -7,6 +7,10 @@ use AdventOfCode\Year2021\PuzzleResolver;
 
 class GoldPuzzle implements PuzzleResolver
 {
+    private array $allNodes;
+
+    private array $allPath;
+
     /**
      * @return mixed
      */
@@ -33,37 +37,35 @@ class GoldPuzzle implements PuzzleResolver
             $bNode->addSibling($aNode);
         }
 
-        $result = $this->go($this->allNodes['start'], [], [], false);
+        $this->allPath = [];
+        $this->go($this->allNodes['start'], [], [], false);
 
-        return count($result);
+        return count($this->allPath);
     }
 
     /**
      * @param Model   $now
      * @param Model[] $all
      * @param bool[]  $visited
-     * @return bool[]
+     * @return void
      */
-    private function go(Model $now, array $path, array $visited, bool $twice): array
+    private function go(Model $now, array $path, array $visited, bool $twice): void
     {
-        $result = [];
         $path[] = $now->getName();
         $visited[$now->getName()] = true;
         if ($now->getName() === 'end') {
-            $result[] = $path;
+            $this->allPath[] = $path;
         } else {
             foreach ($now->getSiblings() as $sibling) {
                 if ($sibling->isBig() || !isset($visited[$sibling->getName()])) {
-                    $result = array_merge($result, $this->go($sibling, $path, $visited, $twice));
+                    $this->go($sibling, $path, $visited, $twice);
                 } elseif (!$twice
                     && !$sibling->isBig()
                     && isset($visited[$sibling->getName()])
                     && $sibling->getName() !== 'start') {
-                    $result = array_merge($result, $this->go($sibling, $path, $visited, true));
+                    $this->go($sibling, $path, $visited, true);
                 }
             }
         }
-
-        return $result;
     }
 }

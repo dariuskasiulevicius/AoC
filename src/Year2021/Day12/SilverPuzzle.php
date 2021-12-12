@@ -9,6 +9,8 @@ class SilverPuzzle implements PuzzleResolver
 {
     private array $allNodes;
 
+    private array $allPath;
+
     /**
      * @return mixed
      */
@@ -35,32 +37,30 @@ class SilverPuzzle implements PuzzleResolver
             $bNode->addSibling($aNode);
         }
 
-        $result = $this->go($this->allNodes['start'], [], []);
+        $this->allPath = [];
+        $this->go($this->allNodes['start'], [], []);
 
-        return count($result);
+        return count($this->allPath);
     }
 
     /**
      * @param Model   $now
      * @param Model[] $all
      * @param bool[]  $visited
-     * @return bool[]
+     * @return void
      */
-    private function go(Model $now, array $path, array $visited): array
+    private function go(Model $now, array $path, array $visited): void
     {
-        $result = [];
         $path[] = $now->getName();
         $visited[$now->getName()] = true;
         if ($now->getName() === 'end') {
-            $result[] = $path;
+            $this->allPath[] = $path;
         } else {
             foreach ($now->getSiblings() as $sibling) {
                 if ($sibling->isBig() || !isset($visited[$sibling->getName()])) {
-                    $result = array_merge($result, $this->go($sibling, $path, $visited));
+                    $this->go($sibling, $path, $visited);
                 }
             }
         }
-
-        return $result;
     }
 }
