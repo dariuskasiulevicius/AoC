@@ -15,7 +15,7 @@ class Fixtures implements Fixture
         $case = new TestCase();
         $case->setVariation(TestCase::VARIATION_SILVER);
         $case->setInputFileName('Fixture01.txt');
-        $case->setExpected();
+        $case->setExpected('');
         $cases[] = $case;
 
         return $cases;
