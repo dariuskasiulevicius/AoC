@@ -30,6 +30,9 @@ class TestCommand extends Base
         $table = new Table($output);
         $testCases = $this->testObj->getCases();
         foreach ($testCases as $testCase) {
+            if(is_array($testCase)) {
+                $testCase = $this->buildTestCase($testCase);
+            }
             $dataInput = new DataInput($this->getDataFileName($testCase->getInputFileName()));
             $variation = $this->goldObj;
             if ($testCase->getVariation() === TestCase::VARIATION_SILVER) {
@@ -58,5 +61,15 @@ class TestCommand extends Base
 
         $testClassName = 'AdventOfCode\\Year2015\\' . $this->dayDir . '\\Fixtures';
         $this->testObj = new $testClassName();
+    }
+
+    private function buildTestCase($test)
+    {
+        $case = new TestCase();
+        $case->setVariation($test[0]);
+        $case->setInputFileName($test[1]);
+        $case->setExpected($test[2]);
+
+        return $case;
     }
 }
