@@ -33,6 +33,11 @@ class DataInput implements \Iterator
         return trim($this->line);
     }
 
+    public function getFullLine(): mixed
+    {
+        return $this->line;
+    }
+
     public function next(): void
     {
         $this->lineNumber++;
