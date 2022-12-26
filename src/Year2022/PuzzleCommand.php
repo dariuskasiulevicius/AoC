@@ -71,6 +71,8 @@ class PuzzleCommand extends Base
                         ['Data file', $dataFileName],
                         ['Silver class name', get_class($this->silverObj)],
                         ['Gold class name', get_class($this->goldObj)],
+                        ['Mem peak (MB)', memory_get_peak_usage(true)/1024/1024],
+                        ['Mem usage (MB)', memory_get_usage(true)/1024/1024],
                     ]
                 )
                 ->render();
