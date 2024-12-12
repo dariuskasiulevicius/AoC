@@ -40,12 +40,19 @@ class TestCommand extends Base
             $actual = $variation->resolve($dataInput);
             $executeTime = microtime(true) - $startTime;
             $correct = (string)$testCase->getExpected() === (string)$actual ? 'v' : 'X';
-            $table->addRow([$testCase->getVariation(), $actual, $testCase->getExpected(), $correct, $executeTime]);
+            $table->addRow([
+                $testCase->getVariation(),
+                $actual,
+                $testCase->getExpected(),
+                $correct,
+                $executeTime,
+                $testCase->getInputFileName()
+            ]);
         }
 
 
         $table
-            ->setHeaders(['Star type', 'Result value', 'Expected value', 'Is correct', 'Execution time (s)'])
+            ->setHeaders(['Star type', 'Result value', 'Expected value', 'Is correct', 'Execution time (s)', 'File'])
             ->setHeaderTitle('Day ' . $day)
             ->setStyle('box-double')
             ->render();
