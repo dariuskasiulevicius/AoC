@@ -9,7 +9,7 @@ use Symfony\Component\Finder\Finder;
 
 $application = new Application();
 $finder = new Finder();
-$finder->files()->name('*Command.php')->in(__DIR__.'/src');
+$finder->files()->name('*Command.php')->exclude(['Year2015', 'Year2020', 'Year2021', 'Year2022', 'Year2023'])->in(__DIR__.'/src');
 
 if ($finder->hasResults()) {
     foreach ($finder as $file) {

@@ -2,6 +2,7 @@
 
 namespace AdventOfCode\Year2024;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,9 +10,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
+#[AsCommand('AoC-2024:make')]
 class MakeSkeletonForDayCommand extends Command
 {
-    protected static $defaultName = 'AoC-2024:make';
     protected string $rootDir = __DIR__;
 
     protected function configure(): void

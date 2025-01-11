@@ -2,14 +2,15 @@
 
 namespace AdventOfCode\Year2024;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand('AoC-2024:test')]
 class TestCommand extends Base
 {
-    protected static $defaultName = 'AoC-2024:test';
     protected Fixture $testObj;
 
     protected function configure(): void
